@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Verification System</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 300px; }
+        .valid { color: #27ae60; font-weight: bold; font-size: 1.5rem; }
+        .invalid { color: #e74c3c; font-weight: bold; font-size: 1.5rem; }
+        .details { margin-top: 20px; text-align: left; border-top: 1px solid #eee; padding-top: 10px; }
+        .detail-item { margin: 5px 0; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="result-card">
+    <div id="status">Verifying...</div>
+    <div id="user-details" class="details" style="display:none;"></div>
+</div>
+
+<script>
+    // 1. Your "Database" of IDs
+    const idDatabase = {
+        "101": { name: "John Doe", role: "Manager", expiry: "2025-12-31" },
+        "102": { name: "Jane Smith", role: "Designer", expiry: "2026-05-15" }
+    };
+
+    // 2. Get ID from URL (e.g., ?id=101)
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    const statusDiv = document.getElementById('status');
+    const detailsDiv = document.getElementById('user-details');
+
+    if (id && idDatabase[id]) {
+        const user = idDatabase[id];
+        statusDiv.innerHTML = '<span class="valid">✅ VALID ID</span>';
+        detailsDiv.style.display = 'block';
+        detailsDiv.innerHTML = `
+            <div class="detail-item"><strong>ID:</strong> ${id}</div>
+            <div class="detail-item"><strong>Name:</strong> ${user.name}</div>
+            <div class="detail-item"><strong>Role:</strong> ${user.role}</div>
+            <div class="detail-item"><strong>Expires:</strong> ${user.expiry}</div>
+        `;
+    } else {
+        statusDiv.innerHTML = '<span class="invalid">❌ NOT VALID</span>';
+        detailsDiv.innerHTML = '<p>This ID record was not found in our system.</p>';
+        detailsDiv.style.display = 'block';
+    }
+</script>
+</body>
+</html>
