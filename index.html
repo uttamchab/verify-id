@@ -69,11 +69,11 @@
     if (id && idDatabase[id]) {
         const user = idDatabase[id];
         statusDiv.className = "status-banner valid-banner";
-        statusDiv.innerHTML = "✅ VALID ID";
+        statusDiv.innerHTML = "✅ VALID ID-CARD";
         
         detailsDiv.style.display = 'block';
         detailsDiv.innerHTML = `
-            <img src="photos/${user.photo}" class="profile-img" onerror="this.src='https://via.placeholder.com/100?text=No+Photo'">
+            <img src="photos/${user.photo}" class="profile-img" alt="Profile Photo">
             <table class="details-table">
                 <tr><td class="label">ID No.</td><td class="value">${id}</td></tr>
                 <tr><td class="label">Name</td><td class="value"><strong>${user.name}</strong></td></tr>
@@ -90,7 +90,7 @@
         `;
     } else {
         statusDiv.className = "status-banner invalid-banner";
-        statusDiv.innerHTML = "❌ NOT VALID";
+        statusDiv.innerHTML = "❌ INVALID ID-CARD ";
         detailsDiv.style.display = 'block';
         detailsDiv.innerHTML = "<p>No matching record found in the database.</p>";
     }
