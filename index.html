@@ -11,12 +11,14 @@
         .invalid { color: #e74c3c; font-weight: bold; font-size: 1.5rem; }
         .details { margin-top: 20px; text-align: left; border-top: 1px solid #eee; padding-top: 10px; }
         .detail-item { margin: 5px 0; font-size: 0.9rem; }
-    </style>
+		
+		.profile-img { width: 120px;height: 120px;border-radius: 50%;object-fit: cover;border: 3px solid #27ae60;margin: 10px auto;display: block; }
+	</style>
 </head>
 <body>
 
 <div class="card" id="result-card">
-	<img src="/verify-id//hclogo.jpg"></br>
+	<img src="/verify-id/hclogo.jpg" style="width: 100px;"></br>
     <div id="status">Verifying...</div>
     <div id="user-details" class="details" style="display:none;"></div>
 </div>
@@ -24,8 +26,8 @@
 <script>
     // 1. Your "Database" of IDs
     const idDatabase = {
-        "101": { name: "Uttam Chabungbam", role: "Computer Assistant", ein: "111533", fname: "Ch. Ibotombi Singh", mname: "L. Ibeyaima Devi", peradd: "Sagolband Moirang Leirak, Imphal West District, Manipur - 795001" , preadd: "Sagolband Moirang Leirak, Imphal West District, Manipur - 795001" ,sex: "Male" , dob: "12-11-1983" , expiry: "31-12-2031" },
-        "102": { name: "Phuraitlatpam Ongkernath Sharma", role: "Sr. Judicial Assistant", ein: "110306", fname: "(L) Ph. Jiten Sharma", mname: "(L) Ph. Shushila Devi", peradd: "Sagolband Salam Leikai Imphal West District, Manipur - 795001" , preadd: "Sagolband Salam Leikai Imphal West District, Manipur - 795001" ,sex: "Male" , dob: "01-01-1974" , expiry: "31-12-2031" },
+        "101": { photo: "uttam.jpg", name: "Uttam Chabungbam", role: "Computer Assistant", ein: "111533", fname: "Ch. Ibotombi Singh", mname: "L. Ibeyaima Devi", peradd: "Sagolband Moirang Leirak, Imphal West District, Manipur - 795001" , preadd: "Sagolband Moirang Leirak, Imphal West District, Manipur - 795001" ,sex: "Male" , dob: "12-11-1983" , expiry: "31-12-2031" },
+        "102": { photo: "ongkernath.jpg", name: "Phuraitlatpam Ongkernath Sharma", role: "Sr. Judicial Assistant", ein: "110306", fname: "(L) Ph. Jiten Sharma", mname: "(L) Ph. Shushila Devi", peradd: "Sagolband Salam Leikai Imphal West District, Manipur - 795001" , preadd: "Sagolband Salam Leikai Imphal West District, Manipur - 795001" ,sex: "Male" , dob: "01-01-1974" , expiry: "31-12-2031" },
     };
 
     // 2. Get ID from URL (e.g., ?id=101)
@@ -40,6 +42,7 @@
         statusDiv.innerHTML = '<span class="valid">✅ VALID ID</span>';
         detailsDiv.style.display = 'block';
         detailsDiv.innerHTML = `
+		    <img src="photos/${user.photo}" class="profile-img" alt="Profile Photo">
             <div class="detail-item"><strong>ID No.:</strong> ${id}</div>
             <div class="detail-item"><strong>Name:</strong> ${user.name}</div>
             <div class="detail-item"><strong>Role:</strong> ${user.role}</div>
@@ -57,6 +60,7 @@
         detailsDiv.innerHTML = '<p>This ID record was not found in our system.</p>';
         detailsDiv.style.display = 'block';
     }
-</script>
+</script>           
+            
 </body>
 </html>
