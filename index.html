@@ -16,7 +16,7 @@
 <body>
 
 <div class="card" id="result-card">
-	<img src="/verify-id//hclogo.jpg">
+	<img src="/verify-id//hclogo.jpg"></br>
     <div id="status">Verifying...</div>
     <div id="user-details" class="details" style="display:none;"></div>
 </div>
@@ -40,10 +40,10 @@
         statusDiv.innerHTML = '<span class="valid">✅ VALID ID</span>';
         detailsDiv.style.display = 'block';
         detailsDiv.innerHTML = `
-            <div class="detail-item"><strong>ID:</strong> ${id}</div>
+            <div class="detail-item"><strong>ID No.:</strong> ${id}</div>
             <div class="detail-item"><strong>Name:</strong> ${user.name}</div>
             <div class="detail-item"><strong>Role:</strong> ${user.role}</div>
-			<div class="detail-item"><strong>Role:</strong> ${user.ein}</div>
+			<div class="detail-item"><strong>EIN:</strong> ${user.ein}</div>
             <div class="detail-item"><strong>Expires:</strong> ${user.expiry}</div>
         `;
     } else {
